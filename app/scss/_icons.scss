@@ -1,0 +1,126 @@
+@mixin icons($background, $width, $height) {
+	background: url('../images/#{$background}.png') no-repeat left top;
+	width: $width; 
+	height: $height;
+}
+
+.icon {
+	@extend %inline-middle;
+	&.icon-contacts{
+		background: #fff;
+		border-radius: 50%;
+		width: 69px;
+		height: 69px;
+		position: relative;
+
+		@media (max-width:767px){ 
+			width: 49px;
+			height: 49px;
+		}
+		&:after{
+			content: '';
+			background: url(../img/icon-contacts.png);
+			@extend %full;
+		}
+		&.icon-phone:after{
+			width: 15px;
+			height: 15px;
+			background-position: 0 0;
+		}
+		&.icon-mail:after{
+			width: 16px;
+			height: 12px;
+			background-position: 0 -15px;
+			color: cyan;
+		}
+		&.icon-map:after{
+			width: 16px;
+			height: 19px;
+			background-position: 0 -27px;
+		}
+	}
+	&.icon-socials{
+		background-color: rgb(255, 106, 47);
+		border-radius: 50%;
+		width: 44px;
+		height: 44px;
+		position: relative;
+		transition: 250ms all ease;
+		&:hover{
+			background-color: #fff;
+			&:after{				
+    			filter: brightness(1) invert(0);
+			}
+		}
+		&:after{
+			content: '';
+			background: url(../img/icon-socials.png);
+			@extend %full;
+    		filter: brightness(0) invert(1);
+    		transition: 250ms all ease;
+		}
+		&.fb:after{
+			width: 7px;
+			height: 14px;
+			background-position: 0 0;
+		}
+		&.tw:after{
+			width: 13px;
+			height: 12px;
+			background-position: 0 -14px;
+		}
+		&.you:after{
+			width: 14px;
+			height: 10px;
+			background-position: 0 -26px;
+		}
+		&.rss:after{
+			width: 14px;
+			height: 13px;
+			background-position: 0 -37px;
+		}
+	}
+}
+.picture{
+	background-image: linear-gradient( 90deg, #023a61 52%, #02426f 52%);
+	width: 165px;
+	height: 165px;
+	position: relative;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	transition: 550ms all cubic-bezier(0.39, 0.58, 0.57, 1);
+	margin: 10px;
+	background-position: center;
+    background-position: center;
+    background-size: 100%;
+	&-inner{
+	}
+	img{		
+		transition: 350ms all ease;
+		border-radius: 50%;
+	}
+	&:after{
+		content: '';
+		position:absolute;
+		top:-10px;
+		left:-10px;
+		right:-10px; 
+		bottom:-10px;  
+		margin: auto;
+		border-style: solid;
+		border-width: 10px;
+		border-color: rgba(52, 151, 219, 0.66);
+		border-radius: 50%;
+		transition: 350ms all ease;
+	}
+}
+
+.nophoto:after{
+    content: '?';
+    font-size: 90px;
+    color: #fff;
+    line-height: 164px;
+}

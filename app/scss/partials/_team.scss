@@ -1,0 +1,98 @@
+.team{
+	@include background('pattern-3.jpg');
+	padding: px(94) 0 px(0);
+	.mainheading{
+	}
+	&-inner{
+  		background-color: rgba(0, 4, 24, 0.851); 
+  		margin-top: px(136);
+  		padding-bottom: px(74);
+		@media (max-width:767px){
+			margin-top: px(50);
+		}
+	}
+	&-type{
+		@extend %clear;		
+  		position: relative;
+  		top: -85px;
+		@media (max-width:767px){
+		    top: -24px; 
+		}
+		figure{
+			float: left;
+			width: 33.33%;
+			text-align: center;
+			margin: 0;
+			@media (max-width:767px){ 
+				//width: 100%;
+				//margin-bottom: 30px;
+			}
+			.picture{
+				margin: 0 auto; 
+				margin-bottom: 16px;
+			    @media (max-width:767px){ 
+					width: 60px;
+					height: 60px;
+					&:after{
+						top: -5px;
+						left: -5px;
+						right: -5px;
+						bottom: -5px;
+					}
+			    }
+			}
+			figcaption{
+				font-family: 'UniSans';
+				font-size: px(25);
+				color: #fff;
+				text-transform: uppercase;
+				line-height: 2.88;
+				letter-spacing: 1px;
+				@media (min-width:768px) and (max-width:1024px){			
+			        line-height: 40px;
+				}
+				@media (max-width:767px){
+					font-size: 12px;
+				    line-height: 18px;
+				}
+			}
+			&.active{	
+				.picture{
+				    background-image: linear-gradient( 90deg, #ee521a 52%, #f05e1e 52%);
+					&:after{
+						border-color: rgba(240, 94, 30, 0.66);
+					}	 
+					img{
+			    		filter: brightness(0) invert(1);
+					}
+				}
+				figcaption{
+					color: $activeColor;
+				}
+			}
+		}
+	}
+}
+
+.media{
+	@extend %clear;
+	& &-left{
+		float: left;
+		@media (max-width:767px){ 
+			float: none;
+			.picture{
+				margin-left: auto;
+				margin-right: auto;
+				margin-bottom: 40px;
+			}			
+		}
+	}
+	& &-body{
+		margin-left: pxtopercent(218, 550);
+		padding-right: 40px;
+		@media (max-width:767px){ 
+			margin-left: 0;
+			padding-right: 0;
+		}
+	}
+}

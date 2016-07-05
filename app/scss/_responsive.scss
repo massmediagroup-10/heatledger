@@ -1,0 +1,46 @@
+@media (min-width: $container) {
+	.container {
+		width: $container;
+	}
+}
+@media (max-width: $mbox){ 
+	.mbox{
+		width: 100%;
+	}
+}
+@media (min-width: 1025px){ 
+	.navbar-toggle {
+		display: none;
+	}
+	.navbar-collapse.collapse {
+		display: block !important;
+		height: auto !important;
+		padding-bottom: 0;
+		overflow: visible !important;
+	}
+}
+@media (max-width:1024px){	
+	.header{
+		&-menu {
+			ul{
+				display: block;
+				li{
+					display: block; 
+					&:first-child, 
+					&:last-child{
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}
+@media (max-width:767px){
+	body{
+		font-size: 12px;
+	} 
+	
+}
+
+@media (max-width:480px){
+}

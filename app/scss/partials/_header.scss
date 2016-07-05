@@ -1,0 +1,126 @@
+body:before {
+	content: '';
+	height: 82px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 3;
+	background-color: rgba(0, 0, 0, 0.702);
+	@media (max-width:1024px){ 
+		content: none;
+	}
+}
+body.collapsed .header{
+	height: 100%;
+}
+.header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 4;
+	padding: 0px 0;
+	transition: 200ms all ease;
+	@media (max-width:1024px){ 
+	    background-color: rgba(0, 0, 0, 0.9);
+	    min-height: 50px;
+	    z-index: 100; 
+	}
+	&-logo{
+		float: left;
+		width: px(430);
+		position: relative;
+		z-index: 2;
+		opacity: 0;
+		top: 15px;
+		@media (max-width:480px){ 
+			width: px(250);
+		}
+		@media (max-width:1024px){ 
+			opacity: 1;
+		}
+	}
+	&-menu{   
+		position: relative;
+		@extend %clear;
+		ul{
+			display: table;
+			width: 100%;
+			li{
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				height: 30px;
+				position: relative;
+				@media (max-width:1024px){ 
+					height: auto;
+					text-align: left !important;
+				}
+				a{
+					text-decoration: none;
+					font-size: 14px;
+					font-family: "UniSans";
+					color: rgb(122, 122, 122);
+					text-transform: uppercase;
+					line-height: 1.2;
+					padding: 33px 25px;
+					display: block;
+					@media (max-width:1024px){ 
+						padding: 10px 10px;
+					}
+				}
+				&.active,
+				& a:hover{ 
+					text-decoration: underline;
+				}
+				&:first-child{
+					text-align: left;
+				}
+				&:last-child{
+					text-align: right;
+				}
+				&:hover{
+					ul{
+						display: block;
+					}
+				}
+				ul {
+					min-width: 200px;
+					display: none;
+					position: absolute;    
+					top: 100%;
+    				margin-top: 0;
+					background-color: rgba(0, 0, 0, 0.702);
+					@media (max-width:1024px){ 
+						position: static;
+						display: block;
+						background: transparent;
+					}
+					li{
+						display: block;
+						text-align: left !important;
+						height: auto;
+						a{
+							padding: 10px 10px;
+							transition: 300ms all ease;
+							&:hover{
+								text-decoration: none;
+								padding-left: 20px;
+							}
+							&:hover{
+								background-color: rgba(0, 0, 0, 1);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.collapsed {
+	.header {
+	    position: fixed;
+	    overflow: scroll;		
+	}
+}

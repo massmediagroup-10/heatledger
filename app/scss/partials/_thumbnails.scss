@@ -1,0 +1,53 @@
+.thumbnails{
+	@include background('pattern-0.png');
+	padding: px(26) 0 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	@media (max-width:1024px){ 
+		position: relative;
+	}
+	.row{
+		margin-left: -10px;
+		margin-right: -10px;
+		@extend %clear;
+		@media (min-width:768px){ 
+			display: flex;
+	    	flex-wrap: wrap; 
+		}
+		.col{
+			padding: 0 10px;
+			@media (min-width:768px){ 
+				display: flex;
+				float: left;
+				width: 33.33%;
+			}
+		}
+	}
+	&-item{
+		padding: 20px 30px;
+		background: #101010;		
+		text-align: center;
+		margin-bottom: 30px;
+		@media (min-width:768px){ 
+			min-height: 242px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		&-inner{
+
+		}
+	}
+	h2{
+		color: #fd5f00;
+		margin-bottom: 4px;
+	}
+	p{
+		font-size: px(14); 
+		line-height: px(17);
+		color: #747171;
+	}
+}

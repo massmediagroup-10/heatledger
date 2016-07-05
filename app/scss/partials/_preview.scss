@@ -1,0 +1,53 @@
+.preview{
+    min-height: 1000px;
+    @media (max-width:768px){ 
+        height: 350px; 
+    }
+    &-media{
+        position: fixed;
+        left: 0;
+        right: 0;   
+        height: 100%;
+        overflow: hidden;  
+        z-index: -110;    
+    }
+    video { 
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        background: url(../media/poster1.png) no-repeat;
+        background-size: cover;
+    }
+    &-logo{
+        position: fixed;
+        left: 0;
+        right: 0;   
+        //height: 100%; 
+        z-index: 3;
+        @media (max-width:1024px){ 
+            z-index: 101;
+        }
+        img{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            text-align: center;
+            opacity: 0;
+            transform-origin: 0 0;
+            @media (max-width:1024px){ 
+                left: 10px !important;
+                top: 4px !important;
+                transform: matrix(0.25, 0, 0, 0.25, 0, 0) !important;
+                z-index: 200;
+                transform-origin: 0 0;
+                opacity: 1;
+            }
+            &.init {
+                opacity: 1;
+            }
+        }
+        //transform: translateX(-50%) translateY(-50%);
+    }
+}

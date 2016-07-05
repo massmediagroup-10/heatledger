@@ -1,0 +1,28 @@
+.footer{
+	background-color: rgba(109, 108, 108, 0.89);
+	padding:  25px 0;
+	&-copyright{
+		font-size: 12px;
+		color: rgb(254, 254, 255);
+		text-transform: uppercase;
+    	letter-spacing: 2.4px;
+		@media (min-width:768px){ 
+  			float: right;
+	   		line-height: 45px;
+		}
+  	}
+  	&-socials{
+  		@extend %clear;
+		@media (min-width:768px){ 
+  			float: left;
+		}
+		@media (max-width:767px){ 
+  			margin-bottom: 20px;  
+		}
+  		a{ 
+  			display: block;
+  			float: left;
+		    margin-right: 20px;
+  		}
+  	}
+}
