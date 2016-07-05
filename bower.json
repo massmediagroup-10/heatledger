@@ -1,0 +1,37 @@
+{
+  "name": "heatledger",
+  "version": "1.0.0",
+  "homepage": "https://github.com/onyzhin/base-project",
+  "authors": [
+    "o.nyzhin@gmail.com"
+  ],
+  "description": "base front-end",
+  "moduleType": [],
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "*",
+    "jquery": "2.*",
+    "slick-carousel": "~1.5.9",
+    "znice": "*",
+    "gsap": "*",
+    "scrollissimo": "*" ,
+    "animate.css": "*",
+    "parallax.js": "*",
+    "wow": "*",
+    "animate.css": "*"
+  },
+  "overrides": {
+    "slick-carousel": {
+     "main": ["./bower_components/slick-carousel/slick/slick.min.js", "./bower_components/slick-carousel/slick/slick.css"]
+    }
+  },
+  "main": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
