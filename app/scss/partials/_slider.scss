@@ -1,0 +1,35 @@
+/* Arrows */
+.slick-prev,
+.slick-next
+{
+    width: 20px;
+    height: 66px;
+    background: url(../img/arrows.png);
+    background-repeat: no-repeat; 
+    outline: none;
+    border: 0;
+    font-size: 0; 
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    z-index: 10;
+}
+.slick-prev{
+	background-position: left top;
+    right: 100%;
+    margin-right: 80px;
+}
+.slick-next{
+	background-position: right top; 
+	left: 100%; 
+    margin-left: 80px; 
+}
+.slick-prev:hover,
+.slick-prev:focus {
+	background-position: left bottom;
+}
+.slick-next:hover,
+.slick-next:focus {
+	background-position: right bottom;
+}
