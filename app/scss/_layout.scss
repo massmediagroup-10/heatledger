@@ -105,6 +105,33 @@ figure{
 	padding: 0 10px;
 }
 
+.middleblock {
+	transform: translateY(-50%);
+    top: calc(50% + 40px);
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.preview {
+	.middleblock {
+		@media (max-width:1024px) {	
+    		top: calc(50% + 25px);
+     	}
+	}
+}
+
+.casual {
+	background-position: center center;
+	background-size: cover; 
+	background-attachment: fixed;
+	&-inner {
+	    background-color: rgba(0, 4, 24, 0.851);
+		padding: px(94) 0 px(0);
+		padding-bottom: px(74);
+	}
+}
+
 .curtainContainer {
     width: 100%; height: 100%;
     position: relative;

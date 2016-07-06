@@ -1,22 +1,34 @@
 'use strict'; 
 function scrollUp(block,targetBlock) {
 	$(block).click(function(event){
-		event.preventDefault();
+		//event.preventDefault();
+		var href = $($(this).attr('href').substr(1));
+		var that = $(this);
 		var target;
-		if ($(this).attr('href') == '#slide-5') {
+		if (href == '#contacts') {
 			$('body, html').animate({scrollTop:$('body').height()},800);
 			return false;
 		}
-		if ($(this).hasClass('tab-link')) {
-			target = $($(this).attr('href')).find('.container') || $($(this).attr('href')).find('.mbox');
+		if (that.hasClass('tab-link')) {
+			target = href.find('.container');
+			console.log(href);
 			target = target.offset().top - 180; 
-			$($(this).data('href')).trigger('click');
+			$(that.data('href')).trigger('click');
 		} else 
-			target = $($(this).attr('href')).offset().top - 82;  
+			target = href.offset().top - 81;  
 		$('body, html').animate({scrollTop:target},800);
 		return false;
 	});
 }   
+
+function hashScroll() {
+	if(window.location.hash) {
+		var targetBlock = $(window.location.hash);	
+		console.log(targetBlock)	
+		var target = $(targetBlock).offset().top - 82; 
+		$('body, html').animate({scrollTop:target}, 0);
+	}
+}
  
 function star(rating){
 	$(rating).each(function(){
@@ -81,13 +93,13 @@ function navbartoggle(){
 		if($(this).is('.active')){
 			$(this).removeClass('active');
 			navbar.stop().slideUp(function(){
-				$('.preview-logo img.init').css({'opacity':1})
+				$('.preview-logo img.init, .header-logo').css({'opacity':1})
 			}).removeClass('active');
 			$('body').removeClass('collapsed');
 		}
 		else{
 			$(this).addClass('active');
-			$('.preview-logo img.init').css({'opacity':0})
+			$('.preview-logo img.init, .header-logo').css({'opacity':0})
 			navbar.stop().slideDown().addClass('active');
 			$('body').addClass('collapsed');  
 		}
@@ -169,22 +181,21 @@ function sendForm(){
 }
 
 function previewHeight(responsive) {
-	var windowHeight = $(window).height() - 82;  
+	var windowHeight = $(window).height();  
  
 	if ($(window).width() > responsive) {
 		$('.section').css({
 			'min-height' : windowHeight
 		});
+
+		$('.section-double').css({
+			'height' : windowHeight*2
+		});
+
 	} else {
 		$('.section').css({
 			'min-height' : 'auto'
 		});		
-	}
-
-	if ($(window).width() > responsive) {
-		$('.section-double').css({
-			'height' : windowHeight*2
-		})
 	}
 
 }
@@ -198,50 +209,50 @@ function logoPreviewPos() {
 }
 
 function logoAnimation() {
-	var $logoPreview = $('.preview-logo img');
-	var $logoHeader = $('.header-logo');
-	$logoPreview.top = $logoPreview.position().top - $logoPreview.height();
-	$logoPreview.left = $logoPreview.position().left;	
+	if ($('.preview-logo').length) {
+		var $logoPreview = $('.preview-logo img');
+		var $logoHeader = $('.header-logo');
+		$logoPreview.top = $logoPreview.position().top - $logoPreview.height();
+		$logoPreview.left = $logoPreview.position().left;	
 
-	$logoHeader.top = $logoHeader.offset().top - 2;
-	$logoHeader.left = $logoHeader.offset().left;
+		$logoHeader.top = $logoHeader.offset().top - 2;
+		$logoHeader.left = $logoHeader.offset().left;
 
-	var position1 = { 
-		top: $logoHeader.top,  
-		scale: .3, 
-		left: $logoHeader.left
-	};
+		var position1 = { 
+			top: $logoHeader.top,  
+			scale: .3, 
+			left: $logoHeader.left
+		};
 
-	var position2 = {
-		top: -80
+		var position2 = {
+			top: -80
+		}
+
+		var logoTween = new TweenLite($logoPreview, 300, position1);
+		var mediaTween = new TweenLite($('.preview-media'), 2000, position2); 
+
+		//if (!window.location.hash) {
+			Scrollissimo.add(logoTween, 0, 25); 
+			Scrollissimo.add(mediaTween, 0, 25); 
+		/*} else {
+			TweenLite.to($logoPreview, 0, position1);
+			Scrollissimo.add(mediaTween, 0, 25); 
+		}*/
 	}
-
-	var myTween = new TweenLite($logoPreview, 300, position1);
-	var myTween2 = new TweenLite($('.preview-media'), 2000, position2); 
-
-	Scrollissimo.add(myTween, 0, 25); 
-	Scrollissimo.add(myTween2, 0, 25); 
-}
-
-function logoOnResize() {
-	var $logoHeader = $('.header-logo');
-	$logoHeader.top = $logoHeader.offset().top - 2;
-	$logoHeader.left = $logoHeader.offset().left;
-	$logoHeader.css({
-		'left' : $logoHeader.left,
-		'top' : $logoHeader.top
-	});
-
 }
 
 function logoInit() {
-	$('.preview-logo img').addClass('init');
+	if ($('.preview-logo').length) {
+		$('.preview-logo img').addClass('init');
+	}
 }
 
 function logoFade() {
-	$('.preview-logo img').addClass('fadeInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-  		$(this).removeClass('fadeInUp animated');
-    });
+	if ($('.preview-logo').length && !window.location.hash) {
+		$('.preview-logo img').addClass('fadeInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+	  		$(this).removeClass('fadeInUp animated');
+	    });
+	}
 }
 
 function thumbnailsPos(scrollTop) {
@@ -297,10 +308,10 @@ $(document).ready(function(){
 	slickInit();
 	footerplaceholder();
 	tabs();
-	logoAnimation();
 	logoPreviewPos();
-	scrollUp('.topMenu a');
-	masterTooltip();
+	logoAnimation();
+	masterTooltip();	
+	scrollUp('.topMenu a');  	
 
 	var responsive = 1024;
 	var mobile = 768;
@@ -310,7 +321,7 @@ $(document).ready(function(){
 		var wHeight = $(window).height(); 
 		previewHeight(responsive);
 		logoInit();
-		new WOW({ mobile: false }).init();
+		new WOW({ mobile: false }).init();	
 		
 		if (windowWidth > responsive) {
 			logoFade();
@@ -318,11 +329,12 @@ $(document).ready(function(){
 		} else {
 			previewRespHeight();
 		}
+
+		hashScroll();
 	}); 
 
 	$(window).resize(function(){
 		footerplaceholder();
-		logoOnResize();
 		previewHeight(responsive);
 		if (windowWidth <= responsive) {
 			previewRespHeight();
